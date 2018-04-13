@@ -83,6 +83,7 @@ vector<IObj*> vectorObj;
 	cout << " Tank " << newTank.getBody()->getX() << endl;
 	newTank.getBody()->setX(10);
 	cout << " Tank " << newTank.getBody()->getX() << endl;
+	cout << " Tank " << newTank.getBody()->getX() << endl;
 
 	cin >> key;
 
