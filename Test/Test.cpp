@@ -7,6 +7,7 @@
 #include "ConcretaClass1.h"
 #include "concrete2.h"
 #include "OverrideMethodObj2.h"
+#include <map>
 
 
 using namespace std;
@@ -19,7 +20,7 @@ public:
 	Body(Entity *entity) { this->ent = entity; x = 0; };
 	void setX(int x_) { x = x_; };
 	int getX() { return x; };
-	~Body() {};
+	virtual ~Body() {};
 private:
 	int x;
 	Entity *ent;
@@ -30,7 +31,7 @@ class Entity {
 public:
 	void setBody(Body *body_) { body = body_; };
 	Body  *getBody() const{ return body; };
-	~Entity() {};
+	virtual ~Entity() {};
 private:
 	Body *body;
 };
@@ -76,14 +77,37 @@ vector<IObj*> vectorObj;
 	vectorObj2[0]->methodIObj2();
 	vectorObj2[1]->methodIObj2();
 	cout << "Tank" << endl;
-	Tank newTank;
+	Tank newTank1;
+	Tank newTank2;
+	Tank newTank3;
 
 	
 	
-	cout << " Tank " << newTank.getBody()->getX() << endl;
-	newTank.getBody()->setX(10);
-	cout << " Tank " << newTank.getBody()->getX() << endl;
-	cout << " Tank " << newTank.getBody()->getX() << endl;
+	cout << " Tank " << newTank1.getBody()->getX() << endl;
+	newTank1.getBody()->setX(10);
+	newTank2.getBody()->setX(20);
+	newTank3.getBody()->setX(30);
+	
+
+	cout << " ------------------------------------- "  << endl;
+	map <string, Tank *> myMap;
+	myMap = { { "Beta", &newTank1 }, ///явная инициализация map
+	{ "Alpha", &newTank2 },
+	{ "Gamma", &newTank3 },
+	{"Zeta", nullptr} };
+
+	map<string, Tank *>::iterator it = myMap.find("alpha");
+	if (myMap["Alpha"])
+	{
+		cout << " Tank " << myMap["Alpha"]->getBody()->getX() << endl;
+	}
+
+	
+	if (myMap["Gamma"])
+	{
+		cout << " Tank " << myMap["Gamma"]->getBody()->getX() << endl;
+	}
+
 
 	cin >> key;
 
