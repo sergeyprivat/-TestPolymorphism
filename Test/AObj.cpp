@@ -2,7 +2,7 @@
 #include "AObj.h"
 #include <iostream>
 
-
+//test comment in other file
 using namespace std;
 
 void AObj::method1()
